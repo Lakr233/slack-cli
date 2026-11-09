@@ -1,0 +1,33 @@
+[package]
+name = "slack-cli"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.80"
+description = "Read your own Slack desktop cache, offline and read-only."
+license = "MIT"
+repository = "https://github.com/Lakr233/slack-cli"
+readme = "README.md"
+keywords = ["slack", "cli", "indexeddb", "offline"]
+categories = ["command-line-utilities"]
+
+[lib]
+name = "slack_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "slack-cli"
+path = "src/main.rs"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+clap = { version = "4.5", features = ["derive"] }
+indexmap = "2"
+regex = "1"
+serde_json = { version = "1", features = ["preserve_order"] }
+terminal_size = "0.4"
+unicode-width = "0.2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true
